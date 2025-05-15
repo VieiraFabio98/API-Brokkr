@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  database: 
+    image: mysql:8.0
+    container_name: database_brokkr
+    restart: always
+    ports: 
+      - 3307:3306 
+    environment:      
+      MYSQL_DATABASE: brokkr_db           
+      MYSQL_USER: brokkr_user              
+      MYSQL_PASSWORD: 123456               
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+volumes:
+  mysqldata:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
