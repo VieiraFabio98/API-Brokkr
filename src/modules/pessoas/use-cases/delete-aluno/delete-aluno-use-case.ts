@@ -1,5 +1,5 @@
-import { AlunoRepository } from '@modules/alunos/infra/repositories/aluno-repository';
-import { IAlunoRepository } from '@modules/alunos/repositories/i-aluno-repository';
+import { AlunoRepository } from '@modules/pessoas/infra/repositories/aluno-repository';
+import { IAlunoRepository } from '@modules/pessoas/repositories/i-aluno-repository';
 import { HttpResponse, serverError } from '@shared/helpers';
 import { inject, injectable } from "tsyringe";
 

@@ -1,49 +1,49 @@
-import { IAlunoRepository } from "@modules/alunos/repositories/i-aluno-repository"
+import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository"
 import { HttpResponse, serverError } from "@shared/helpers"
 import { inject, injectable } from "tsyringe"
 import AppDataSource from "@shared/infra/database/data-source"
+import { query } from "express"
 
 interface IRequest {
-  id?: string;
-  nome?: string;
-  email?: string;
+  nome: string
+  descricao: string
 }
 
 @injectable()
-class UpdateAlunoUseCase {
+class CreateCursoUseCase {
   constructor(
-    @inject('AlunoRepository')
-    private alunoRepository: IAlunoRepository
+    @inject('CursoRepository')
+    private cursoRepository: ICursoRepository
   ){}
 
   async execute({
-    id,
     nome,
-    email
+    descricao
   }: IRequest): Promise<HttpResponse> {
 
     const queryRunner = AppDataSource.createQueryRunner()
     await queryRunner.connect()
     await queryRunner.startTransaction()
-    try {
 
-      const result = await this.alunoRepository.update({
-        id,
+    try {
+      const result = await this.cursoRepository.create({
         nome,
-        email
+        descricao
       }, queryRunner)
 
       await queryRunner.commitTransaction()
+
       return result
 
-    } catch(err){
+    } catch(err) {
+      console.log(err)
       queryRunner.rollbackTransaction()
       throw serverError(err as Error)
     } finally {
       queryRunner.release()
     }
-  }
 
+  }
 }
 
-export { UpdateAlunoUseCase }
+export { CreateCursoUseCase }

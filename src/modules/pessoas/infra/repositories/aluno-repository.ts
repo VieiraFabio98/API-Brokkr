@@ -1,5 +1,5 @@
-import { IAlunoDTO } from "@modules/alunos/dto/i-aluno-dto"
-import { IAlunoRepository } from "@modules/alunos/repositories/i-aluno-repository"
+import { IAlunoDTO } from "@modules/pessoas/dto/i-aluno-dto"
+import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository"
 import { HttpResponse, notFound, ok,  serverError } from "@shared/helpers"
 import { QueryRunner, Repository } from "typeorm"
 import { Aluno } from "../entities/aluno"

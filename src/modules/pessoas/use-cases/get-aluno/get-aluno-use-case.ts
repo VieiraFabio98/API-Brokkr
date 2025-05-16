@@ -1,4 +1,4 @@
-import { IAlunoRepository } from '@modules/alunos/repositories/i-aluno-repository'
+import { IAlunoRepository } from '@modules/pessoas/repositories/i-aluno-repository'
 import { HttpResponse, serverError } from '@shared/helpers'
 import { inject, injectable } from 'tsyringe'
 
@@ -7,12 +7,12 @@ import { inject, injectable } from 'tsyringe'
 class GetAlunoUseCase {
   constructor(
     @inject('AlunoRepository')
-    private AlunoRepository: IAlunoRepository
+    private alunoRepository: IAlunoRepository
   ){}
 
   async execute(id: string): Promise<HttpResponse>{
     try {
-      const result = await this.AlunoRepository.get(id)
+      const result = await this.alunoRepository.get(id)
 
       return result
     } catch(err) {
