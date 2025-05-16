@@ -1,6 +1,6 @@
 import { IAlunoDTO } from "@modules/alunos/dto/i-aluno-dto"
 import { IAlunoRepository } from "@modules/alunos/repositories/i-aluno-repository"
-import { HttpResponse, ok,  serverError } from "@shared/helpers"
+import { HttpResponse, notFound, ok,  serverError } from "@shared/helpers"
 import { QueryRunner, Repository } from "typeorm"
 import { Aluno } from "../entities/aluno"
 import AppDataSource from "@shared/infra/database/data-source"
@@ -13,6 +13,7 @@ class AlunoRepository implements IAlunoRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(Aluno)
   }
+  
 
   async create({
     nome,
@@ -25,6 +26,63 @@ class AlunoRepository implements IAlunoRepository {
       })
 
       const result = await queryRunner.manager.save(aluno)
+
+      return ok(result)
+
+    } catch(err) {
+      throw serverError(err as Error)
+    }
+  }
+
+  async get(id: string): Promise<HttpResponse> {
+    try {
+      const aluno = await this.repository.findOne({ where: { id: id } })
+
+      if (!aluno) {
+        return notFound()
+      }
+
+      return ok(aluno)
+    } catch(err) {
+      throw serverError(err as Error)
+    }
+  }
+
+  async update({
+    id,
+    nome,
+    email
+  }: IAlunoDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
+    try {
+      const alunoExists = await this.repository.findOne({ where: { id: id } })
+
+      if (!alunoExists) {
+        return notFound()
+      }
+
+      const aluno = this.repository.create({
+        id,
+        nome,
+        email
+      })
+
+      const result = await queryRunner.manager.save(aluno)
+
+      return ok(result)
+    } catch(err){
+      throw serverError(err as Error)
+    }
+  }
+
+  async delete(id: string): Promise<HttpResponse> {
+    try {
+      const alunoExists = await this.repository.findOne({ where: { id: id } })
+
+      if (!alunoExists) {
+        return notFound()
+      }
+
+      const result = await this.repository.delete(id)
 
       return ok(result)
 
