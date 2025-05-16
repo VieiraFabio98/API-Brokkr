@@ -8,9 +8,9 @@ interface ICursoRepository {
 
   get(id: string): Promise<HttpResponse>
 
-  // update(data: ICursoDTO, queryRunner: QueryRunner): Promise<HttpResponse>
+  update(data: ICursoDTO, queryRunner: QueryRunner): Promise<HttpResponse>
 
-  // delete(id: string): Promise<HttpResponse>
+  delete(id: string): Promise<HttpResponse>
 
 }
 

@@ -1,21 +1,23 @@
-import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository"
 import { HttpResponse, serverError } from "@shared/helpers"
 import { inject, injectable } from "tsyringe"
 import AppDataSource from "@shared/infra/database/data-source"
+import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository"
 
 interface IRequest {
-  nome: string
-  descricao: string
+  id?: string
+  nome?: string
+  descricao?: string
 }
 
 @injectable()
-class CreateCursoUseCase {
+class UpdateCursoUseCase {
   constructor(
     @inject('CursoRepository')
     private cursoRepository: ICursoRepository
   ){}
 
   async execute({
+    id,
     nome,
     descricao
   }: IRequest): Promise<HttpResponse> {
@@ -25,24 +27,24 @@ class CreateCursoUseCase {
     await queryRunner.startTransaction()
 
     try {
-      const result = await this.cursoRepository.create({
+      const result =  await this.cursoRepository.update({
+        id,
         nome,
         descricao
       }, queryRunner)
 
       await queryRunner.commitTransaction()
-
       return result
 
     } catch(err) {
-      console.log('Create Curso - rollback: \n', err)
+      console.log('Update Curso - rollback: \n', err)
       queryRunner.rollbackTransaction()
       throw serverError(err as Error)
     } finally {
       queryRunner.release()
     }
-
+    
   }
 }
 
-export { CreateCursoUseCase }
+export { UpdateCursoUseCase }

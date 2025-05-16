@@ -2,8 +2,8 @@ import Joi from "joi"
 
 const cursoSchema = Joi.object({
   nome: Joi.string()
-  .pattern(/^[a-zA-ZÀ-ÿ\s]+$/)
     .required()
+    .pattern(/^[a-zA-ZÀ-ÿ\s]+$/)
     .messages({
       "string.base": "O campo 'nome' deve ser uma string.",
       "string.empty": "O campo 'nome' não pode estar vazio.",
@@ -11,8 +11,8 @@ const cursoSchema = Joi.object({
       "any.required": "O campo 'nome' é obrigatório.",
     }),
   descricao: Joi.string()
-    .pattern(/^[a-zA-ZÀ-ÿ\s]+$/)
     .required()
+    .pattern(/^[a-zA-ZÀ-ÿ\s]+$/)
     .messages({
       "string.base": "O campo 'descrição' deve ser uma string.",
       "string.empty": "O campo 'descrição' não pode estar vazio.",
