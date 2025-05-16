@@ -3,6 +3,8 @@ import { DeleteAlunoController } from "@modules/alunos/use-cases/delete-aluno/de
 import { GetAlunoController } from "@modules/alunos/use-cases/get-aluno/get-aluno-controller"
 import { UpdateAlunoController } from "@modules/alunos/use-cases/update-aluno/update-aluno-controller"
 import { Router } from "express"
+import { validateSchema } from "@shared/infra/http/middlewares/validateSchema"
+import { alunoSchema } from "@utils/alunoSchema"
 
 const alunosRoutes = Router()
 
@@ -11,9 +13,9 @@ const getAlunoController = new GetAlunoController()
 const updateAlunoController = new UpdateAlunoController()
 const deleteAlunoController = new DeleteAlunoController()
 
-alunosRoutes.post('/', createAlunoController.handle)
+alunosRoutes.post('/', validateSchema(alunoSchema) ,createAlunoController.handle)
 alunosRoutes.get('/:id', getAlunoController.handle)
-alunosRoutes.put('/:id', updateAlunoController.handle)
+alunosRoutes.put('/:id', validateSchema(alunoSchema), updateAlunoController.handle)
 alunosRoutes.delete('/:id', deleteAlunoController.handle)
 
 export { alunosRoutes}
