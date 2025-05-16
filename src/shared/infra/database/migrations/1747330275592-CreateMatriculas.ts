@@ -28,7 +28,7 @@ export class CreateMatriculas1747330275592 implements MigrationInterface {
                             {
                                 name: "data_matricula",
                                 type: "timestamp",
-                                isNullable: false,
+                                default: 'now()'
                             },
                             {
                                 name: 'updated_at',

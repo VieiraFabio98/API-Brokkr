@@ -7,7 +7,8 @@ services:
     restart: always
     ports: 
       - 3307:3306 
-    environment:      
+    environment:     
+      TZ: America/Sao_Paulo
       MYSQL_DATABASE: brokkr_db           
       MYSQL_USER: brokkr_user              
       MYSQL_PASSWORD: 123456   

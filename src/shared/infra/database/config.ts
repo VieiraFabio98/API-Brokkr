@@ -17,5 +17,6 @@ export const getConfig = () => {
     //   './dist/modules/*/infra/typeorm/entities/.js'
     // ]
     entities: ["src/modules/**/infra/entities/*.ts"],
+    
   } as DataSourceOptions
 }
