@@ -6,6 +6,7 @@ import AppDataSource from "@shared/infra/database/data-source"
 interface IRequest {
   nome?: string
   email?: string
+  dataNascimento?: Date
 }
 
 @injectable()
@@ -17,7 +18,8 @@ class CreateAlunoUseCase{
 
   async execute({
     nome,
-    email
+    email,
+    dataNascimento
   }: IRequest): Promise<HttpResponse> {
 
     const queryRunner = AppDataSource.createQueryRunner()
@@ -28,7 +30,8 @@ class CreateAlunoUseCase{
       
       const result = await this.alunoRepository.create({
         nome,
-        email
+        email,
+        dataNascimento
       }, queryRunner)
 
       await queryRunner.commitTransaction()
@@ -36,7 +39,7 @@ class CreateAlunoUseCase{
       return result
 
     }catch(err) {
-
+      console.log(err)
       queryRunner.rollbackTransaction()
       throw serverError(err as Error)
     }finally {

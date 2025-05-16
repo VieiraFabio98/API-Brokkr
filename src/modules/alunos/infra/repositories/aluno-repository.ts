@@ -17,12 +17,14 @@ class AlunoRepository implements IAlunoRepository {
 
   async create({
     nome,
-    email
+    email,
+    dataNascimento
   }: IAlunoDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       const aluno = this.repository.create({
         nome,
-        email
+        email,
+        dataNascimento
       })
 
       const result = await queryRunner.manager.save(aluno)

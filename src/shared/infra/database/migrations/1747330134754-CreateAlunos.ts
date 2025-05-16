@@ -26,6 +26,11 @@ export class CreateAlunos1747330134754 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
+                        name: "data_nascimento",
+                        type: "date",
+                        isNullable: false,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()'

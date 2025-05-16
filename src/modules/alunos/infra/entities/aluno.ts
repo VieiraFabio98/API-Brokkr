@@ -12,6 +12,9 @@ class Aluno {
   @Column("varchar", { name: "email", nullable: false })
   email: string
 
+  @Column("date", { name: "data_nascimento", nullable: false })
+  dataNascimento: Date
+
   @CreateDateColumn({ name: "created_at", type: "timestamp" })
   createdAt: Date
   

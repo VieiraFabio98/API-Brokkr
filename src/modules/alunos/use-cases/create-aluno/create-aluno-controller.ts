@@ -5,13 +5,14 @@ import { CreateAlunoUseCase } from "./create-aluno-use-case";
 
 class CreateAlunoController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { nome, email } = request.body
+    const { nome, email, dataNascimento } = request.body
 
     const createAlunoUseCase = container.resolve(CreateAlunoUseCase)
 
     const result = await createAlunoUseCase.execute({
       nome,
-      email
+      email,
+      dataNascimento
     })
 
     return response.status(result.statusCode).json(result)

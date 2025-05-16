@@ -19,6 +19,15 @@ const alunoSchema = Joi.object({
       "string.email": "O campo 'email' deve ser um e-mail válido.",
       "any.required": "O campo 'email' é obrigatório.",
     }),
+  dataNascimento: Joi.date()
+    .iso()
+    .required()
+    .messages({
+      "date.base": "O campo 'dataNascimento' deve ser uma data.",
+      "date.empty": "O campo 'dataNascimento' não pode estar vazio.",
+      "date.iso": "O campo 'dataNascimento' deve estar no formato ISO 8601.",
+      "any.required": "O campo 'dataNascimento' é obrigatório.",
+    }),
 })
 
 export { alunoSchema }
