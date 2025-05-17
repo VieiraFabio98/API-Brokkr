@@ -92,6 +92,25 @@ class AlunoRepository implements IAlunoRepository {
       throw serverError(err as Error)
     }
   }
+
+  async listAlunosByCursoId(cursoId: string): Promise<HttpResponse> {
+      try {
+        const alunos = await this.repository.createQueryBuilder("alu")
+        .select([
+          "alu.id as id",
+          "alu.nome as nome",
+          "alu.email as email",
+          "mat.data_matricula as datamatricula",
+        ])
+        .leftJoin('matriculas', 'mat', 'alu.id = mat.aluno_id')
+        .where('mat.curso_id = :cursoId', { cursoId })
+        .getRawMany()
+
+        return ok(alunos)
+      } catch(err) {
+        throw serverError(err as Error)
+      }
+  }
   
 }
 

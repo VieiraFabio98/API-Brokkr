@@ -30,9 +30,9 @@ export const forbidden = (): HttpResponse<Error> => ({
   data: (new ForbiddenError()).error
 })
 
-export const notFound = (): HttpResponse<Error> => ({
+export const notFound = (message:  string = 'Not Found'): HttpResponse<Error> => ({
   statusCode: 404,
-  data: (new NotFoundError()).error
+  data: (new NotFoundError(message)).error
 })
 
 export const conflictError = (type: string): HttpResponse<Error> => ({

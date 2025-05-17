@@ -31,14 +31,13 @@ export class ForbiddenError extends Error {
     }
   }
 }
-
 export class NotFoundError extends Error {
   readonly error: Error
-  constructor () {
-    super('Not found')
+  constructor (message: string = 'Not found') {
+    super(message)
     this.error = {
       name: 'NotFoundError',
-      message: 'Not found'
+      message
     }
   }
 }

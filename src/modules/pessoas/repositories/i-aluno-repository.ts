@@ -12,6 +12,8 @@ interface IAlunoRepository {
 
   delete(id: string): Promise<HttpResponse>
 
+  listAlunosByCursoId(cursoId: string): Promise<HttpResponse>
+
 }
 
 export { IAlunoRepository }
