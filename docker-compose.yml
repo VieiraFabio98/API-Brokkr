@@ -6,7 +6,7 @@ services:
     container_name: database_brokkr
     restart: always
     ports: 
-      - 3307:3306 
+      - 3306:3306 
     environment:     
       TZ: America/Sao_Paulo
       MYSQL_DATABASE: brokkr_db           
