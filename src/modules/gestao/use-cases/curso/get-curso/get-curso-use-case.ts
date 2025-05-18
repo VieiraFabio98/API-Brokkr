@@ -1,6 +1,6 @@
-import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository";
-import { HttpResponse, serverError } from "@shared/helpers";
-import { inject, injectable } from "tsyringe";
+import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository"
+import { HttpResponse, notFound, serverError } from "@shared/helpers"
+import { inject, injectable } from "tsyringe"
 
 
 @injectable()
@@ -12,7 +12,12 @@ class GetCursoUseCase {
   
   async execute(id: string): Promise<HttpResponse> {
     try {
+
       const result = await this.cursoRepository.get(id)
+
+      if(result.data === null) {
+        return notFound("Curso não encontrado.")
+      }
 
       return result
     } catch (err) {

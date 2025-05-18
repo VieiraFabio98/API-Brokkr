@@ -48,17 +48,16 @@ class CursoRepository implements ICursoRepository {
     id,
     nome,
     descricao
-  }: Required<ICursoDTO>): Promise<HttpResponse> {
+  }: Required<ICursoDTO>, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
-      const cursoExists = await this.repository.findOneBy({ id })
 
-      if(!cursoExists) {
-        return notFound()
-      }
+      const curso = this.repository.create({
+        id,
+        nome,
+        descricao
+      })
 
-      cursoExists.nome = nome 
-      cursoExists.descricao = descricao
-      const result = await this.repository.save(cursoExists)
+      const result = await queryRunner.manager.save(curso)
 
       return ok(result)
 
@@ -67,13 +66,13 @@ class CursoRepository implements ICursoRepository {
     }
   }
 
-  async delete(id: string): Promise<HttpResponse> {
+  async delete(id: string, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       
-      const deleteResult = await this.repository.delete(id);
+      const deleteResult = await queryRunner.manager.delete(Curso, { id })
 
       if (!deleteResult.affected || deleteResult.affected === 0) {
-        return notFound()
+        return notFound("Curso não encontrado.")
       }
   
       return noContent()

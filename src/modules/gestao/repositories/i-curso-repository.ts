@@ -10,7 +10,7 @@ interface ICursoRepository {
 
   update(data: ICursoDTO, queryRunner: QueryRunner): Promise<HttpResponse>
 
-  delete(id: string): Promise<HttpResponse>
+  delete(id: string, queryRunner: QueryRunner): Promise<HttpResponse>
 
   listCursoByAlunoId(alunoId: string): Promise<HttpResponse>
 
