@@ -5,7 +5,6 @@ Este repositório contém a API desenvolvida para o desafio técnico da **Brokkr
 
 ## 📂 Conteúdo do Projeto
 
-- 🗃️ Uma cópia do banco de dados em formato `.sql` está disponível na raiz do projeto.
 - 🔄 Dois arquivos de exportação de requisições estão incluídos:
   - Um para **Postman**
   - Outro para **Insomnia**
