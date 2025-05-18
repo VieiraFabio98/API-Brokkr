@@ -1,3 +1,4 @@
+import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository";
 import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository";
 import { HttpResponse, notFound, ok } from "@shared/helpers";
 import { inject, injectable } from "tsyringe";
@@ -7,14 +8,16 @@ import { inject, injectable } from "tsyringe";
 class ListAlunoByCursoUseCase {
   constructor(
     @inject("AlunoRepository")
-    private alunoRepository: IAlunoRepository
+    private alunoRepository: IAlunoRepository,
+    @inject("CursoRepository")
+    private cursoRepository: ICursoRepository
   ) {}
 
   async execute(id: string): Promise<HttpResponse> {
 
-    const cursoExists = await this.alunoRepository.get(id)
-
-    if(!cursoExists) {
+    const cursoExists = await this.cursoRepository.get(id)
+  
+    if(cursoExists.data === null) {
       return notFound("Curso não encontrado.")
     }
 

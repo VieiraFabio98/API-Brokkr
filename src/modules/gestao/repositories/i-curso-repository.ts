@@ -12,6 +12,8 @@ interface ICursoRepository {
 
   delete(id: string): Promise<HttpResponse>
 
+  listCursoByAlunoId(alunoId: string): Promise<HttpResponse>
+
 }
 
 export { ICursoRepository }

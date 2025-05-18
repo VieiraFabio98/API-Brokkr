@@ -28,8 +28,9 @@ class UpdateMatriculaUseCase {
     try {
 
       const matriculaExists = await this.matriculaRepository.get(id)
-
-      if(!matriculaExists){
+      
+      if(matriculaExists.data === null){
+        console.log(matriculaExists)
         return notFound()
       } 
 

@@ -1,6 +1,6 @@
 import { IMatriculaDTO } from "@modules/gestao/dto/i-matricula-dto"
 import { IMatriculaRepository } from "@modules/gestao/repositories/i-matricula-repository"
-import { HttpResponse, notFound, ok, serverError } from "@shared/helpers"
+import { created, HttpResponse, notFound, ok, serverError } from "@shared/helpers"
 import { Matricula } from "../entities/matricula"
 import { QueryRunner, Repository } from "typeorm"
 import AppDataSource from "@shared/infra/database/data-source"
@@ -27,7 +27,7 @@ class MatriculaRepository implements IMatriculaRepository {
       
       const result = await queryRunner.manager.save(matricula)
       
-      return ok(result)
+      return created(result)
 
     } catch(err) {
       throw serverError(err as Error)
@@ -37,10 +37,6 @@ class MatriculaRepository implements IMatriculaRepository {
   async get(id: string): Promise<HttpResponse> {
     try {
       const matriculaExists = await this.repository.findOneBy({ id })
-
-      if (!matriculaExists) {
-        return notFound()
-      }
 
       return ok(matriculaExists)
 

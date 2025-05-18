@@ -1,6 +1,6 @@
 import { IAlunoDTO } from "@modules/pessoas/dto/i-aluno-dto"
 import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository"
-import { HttpResponse, notFound, ok,  serverError } from "@shared/helpers"
+import { created, HttpResponse, notFound, ok,  serverError } from "@shared/helpers"
 import { QueryRunner, Repository } from "typeorm"
 import { Aluno } from "../entities/aluno"
 import AppDataSource from "@shared/infra/database/data-source"
@@ -29,7 +29,7 @@ class AlunoRepository implements IAlunoRepository {
 
       const result = await queryRunner.manager.save(aluno)
 
-      return ok(result)
+      return created(result)
 
     } catch(err) {
       throw serverError(err as Error)
@@ -39,10 +39,6 @@ class AlunoRepository implements IAlunoRepository {
   async get(id: string): Promise<HttpResponse> {
     try {
       const aluno = await this.repository.findOne({ where: { id: id } })
-
-      if (!aluno) {
-        return notFound()
-      }
 
       return ok(aluno)
     } catch(err) {
