@@ -83,7 +83,6 @@ class MatriculaRepository implements IMatriculaRepository {
   }
 
   async findMatricula(aluno: Aluno, curso: Curso): Promise<boolean> {
-    console.log('[enis')
       try {
         const matriculaExists = await this.repository.findOne({
           where : {
