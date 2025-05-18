@@ -1,0 +1,379 @@
+type: collection.insomnia.rest/5.0
+name: Brokkr
+meta:
+  id: wrk_cd033b8abe99448e9659354c87e9ccfb
+  created: 1747349052866
+  modified: 1747349052866
+collection:
+  - name: Alunos
+    meta:
+      id: fld_38b5a05eaf0a4e878b1392ad406de370
+      created: 1747353214940
+      modified: 1747353214940
+      sortKey: -1747353214940
+    children:
+      - url: "{{ _.baseUrl }}/alunos"
+        name: Create Aluno
+        meta:
+          id: req_0187e8fb5ff847749de5b72346ba2eb4
+          created: 1747353218491
+          modified: 1747606803043
+          isPrivate: false
+          sortKey: -1747353218491
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"",
+            	"email":"",
+            	"dataNascimento":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alunos/"
+        name: Get Aluno
+        meta:
+          id: req_6945f01b8b0b485a97eab1b790a564af
+          created: 1747353383407
+          modified: 1747606813587
+          isPrivate: false
+          sortKey: -1747353383407
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alunos/a55bf334-f3ce-4eee-a35d-9fd645ebe3a1"
+        name: Update Aluno
+        meta:
+          id: req_be4fc55dacef4cfb9c10830a606dd7a7
+          created: 1747358945482
+          modified: 1747606822133
+          isPrivate: false
+          sortKey: -1747358945482
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"",
+            	"email":"",
+            	"dataNascimento":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alunos/"
+        name: Delete Aluno
+        meta:
+          id: req_9b291389daf44f97acf679238eb8b8ba
+          created: 1747360034363
+          modified: 1747606825606
+          isPrivate: false
+          sortKey: -1747360034363
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alunos/list-alunos-by-curso/"
+        name: List alunos by curso
+        meta:
+          id: req_969eb0a9dab4477f96b136b3c1d7c72e
+          created: 1747506131725
+          modified: 1747606829446
+          isPrivate: false
+          sortKey: -1747506131725
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Curso
+    meta:
+      id: fld_e058726725274feaa13c49fe60346d58
+      created: 1747489944477
+      modified: 1747489944477
+      sortKey: -1747489944477
+    children:
+      - url: "{{ _.baseUrl }}/cursos"
+        name: Create Curso
+        meta:
+          id: req_ba14d4fc99a14493922129d2f3d72881
+          created: 1747489947464
+          modified: 1747606835701
+          isPrivate: false
+          sortKey: -1747489947464
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"",
+            	"descricao":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/cursos/"
+        name: Get Curso
+        meta:
+          id: req_de15259b78014ff5ba41a7d9ea3c576f
+          created: 1747490031011
+          modified: 1747606838648
+          isPrivate: false
+          sortKey: -1747490031011
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/cursos/"
+        name: Update Curso
+        meta:
+          id: req_95992a86fac64fb0a3b8406350c9c9fd
+          created: 1747490067969
+          modified: 1747606846539
+          isPrivate: false
+          sortKey: -1747490067969
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome":"",
+            	"descricao":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/cursos/"
+        name: Delete Curso
+        meta:
+          id: req_c6939d4fc7cc410e8d6a6544469db55e
+          created: 1747490416638
+          modified: 1747606849517
+          isPrivate: false
+          sortKey: -1747490416638
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/cursos/list-cursos-by-aluno/"
+        name: List cursos by aluno
+        meta:
+          id: req_17249dbfa9304269a0ccc3e09166d4cd
+          created: 1747533596104
+          modified: 1747606855673
+          isPrivate: false
+          sortKey: -1747533596104
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Matriculas
+    meta:
+      id: fld_38e42b00b5694fe8a7224e21f68adaaf
+      created: 1747490451822
+      modified: 1747490451822
+      sortKey: -1747490451822
+    children:
+      - url: "{{ _.baseUrl }}/matriculas"
+        name: Create Matricula
+        meta:
+          id: req_f9ea21f58c08408a899395cbd769bd4e
+          created: 1747490454305
+          modified: 1747606863079
+          isPrivate: false
+          sortKey: -1747490454305
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"alunoId":"",
+            	"cursoId":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/matriculas/f84e2928-c517-492c-aab2-7a618239cf33"
+        name: Update Matricula
+        meta:
+          id: req_9074440321894bf8b7c3fb0f05499e39
+          created: 1747493516508
+          modified: 1747606868919
+          isPrivate: false
+          sortKey: -1747493516508
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"alunoId":"",
+            	"cursoId":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/matriculas/"
+        name: Get Matricula
+        meta:
+          id: req_d9c90bf293744caf860bce7690ebb424
+          created: 1747494417046
+          modified: 1747606873643
+          isPrivate: false
+          sortKey: -1747494417046
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/matriculas/"
+        name: Delete Matricula
+        meta:
+          id: req_97b218912b3148f5a06350a3a82b6d80
+          created: 1747588317315
+          modified: 1747606881419
+          isPrivate: false
+          sortKey: -1747588317315
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_cdf778a547da60dd95b29bf6afd3a03fea4512e2
+    created: 1747349052870
+    modified: 1747349052870
+environments:
+  name: Base Environment
+  meta:
+    id: env_cdf778a547da60dd95b29bf6afd3a03fea4512e2
+    created: 1747349052869
+    modified: 1747489777414
+    isPrivate: false
+  data:
+    baseUrl: http://localhost:3333
