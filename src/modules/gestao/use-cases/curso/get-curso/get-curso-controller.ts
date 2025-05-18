@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { GetCursoUseCase } from "./get-curso-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { GetCursoUseCase } from "./get-curso-use-case"
 
 
 class GetCursoController {

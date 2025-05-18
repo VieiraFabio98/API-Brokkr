@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { DeleteCursoUseCase } from "./delete-curso-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { DeleteCursoUseCase } from "./delete-curso-use-case"
 
 
 class DeleteCursoController {
