@@ -40,7 +40,7 @@ Siga os passos abaixo, na ordem indicada:
    yarn dev
    ```
 
-5. Caso necessário derrumar o docker
+5. Caso necessário derrubar o docker
    ```bash
    docker compose down --volumes
    ```
