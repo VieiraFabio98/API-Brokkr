@@ -4,8 +4,10 @@ import { Curso } from "../infra/entities/curso"
 
 interface IMatriculaDTO {
   id?: string
-  alunoId?: string
-  cursoId?: string
+  // alunoId?: string
+  aluno: Aluno
+  curso: Curso
+  // cursoId?: string
   dataMatricula?: Date
   updatedAt?: Date
 }

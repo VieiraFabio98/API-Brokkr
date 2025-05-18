@@ -1,5 +1,5 @@
 import { IMatriculaRepository } from "@modules/gestao/repositories/i-matricula-repository"
-import { HttpResponse, serverError } from "@shared/helpers"
+import { HttpResponse, notFound, serverError } from "@shared/helpers"
 import { inject, injectable } from "tsyringe"
 
 
@@ -13,6 +13,10 @@ class GetMatriculaUseCase {
   async execute(id: string): Promise<HttpResponse> {
     try {
       const result = await this.matriculaRepository.get(id)
+
+      if(result.data === null) {
+        return notFound("Matrícula não encontrada.")
+      }
 
       return result
       

@@ -12,11 +12,11 @@ class Matricula {
   
     @ManyToOne(() => Aluno, { nullable: false, eager: true })
     @JoinColumn({ name: 'aluno_id', referencedColumnName: 'id' })
-    alunoId: string
+    aluno: Aluno
   
     @ManyToOne(() => Curso, { nullable: false, eager: true })
     @JoinColumn({ name: 'curso_id', referencedColumnName: 'id' })
-    cursoId: string
+    curso: Curso
   
     @CreateDateColumn({ name: "data_matricula", type: "timestamp" })
     dataMatricula: Date

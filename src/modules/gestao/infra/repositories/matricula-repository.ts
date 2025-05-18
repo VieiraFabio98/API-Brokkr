@@ -1,10 +1,12 @@
 import { IMatriculaDTO } from "@modules/gestao/dto/i-matricula-dto"
 import { IMatriculaRepository } from "@modules/gestao/repositories/i-matricula-repository"
-import { created, HttpResponse, notFound, ok, serverError } from "@shared/helpers"
+import { created, HttpResponse, noContent, notFound, ok, serverError } from "@shared/helpers"
 import { Matricula } from "../entities/matricula"
 import { QueryRunner, Repository } from "typeorm"
 import AppDataSource from "@shared/infra/database/data-source"
 import { not } from "joi"
+import { Aluno } from "@modules/pessoas/infra/entities/aluno"
+import { Curso } from "../entities/curso"
 
 
 class MatriculaRepository implements IMatriculaRepository {
@@ -16,13 +18,13 @@ class MatriculaRepository implements IMatriculaRepository {
   }
 
   async create({
-    alunoId,
-    cursoId,
+    aluno,
+    curso,
   }: IMatriculaDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       const matricula = this.repository.create({
-        alunoId,
-        cursoId,
+        aluno,
+        curso,
       })
       
       const result = await queryRunner.manager.save(matricula)
@@ -47,14 +49,14 @@ class MatriculaRepository implements IMatriculaRepository {
 
   async update({
     id,
-    alunoId,
-    cursoId,
+    aluno,
+    curso,
   }: Required<IMatriculaDTO>, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
       const matriculaExists = await this.repository.findOneBy({ id })
 
-      matriculaExists!.alunoId = alunoId
-      matriculaExists!.cursoId = cursoId
+      matriculaExists!.aluno = aluno
+      matriculaExists!.curso = curso
 
       const result = await queryRunner.manager.save(matriculaExists)
 
@@ -65,15 +67,36 @@ class MatriculaRepository implements IMatriculaRepository {
     }
   }
 
-  async delete(id: string): Promise<HttpResponse> {
+  async delete(id: string, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
-      const result = await this.repository.delete(id)
-
-      return ok(result)
+      const deleteResult = await queryRunner.manager.delete(Matricula, { id })
+      
+      if (!deleteResult.affected || deleteResult.affected === 0) {
+        return notFound("Matrícula não encontrado.")
+      }
+        
+      return noContent()
 
     } catch(err) {
       throw serverError(err as Error)
     }
+  }
+
+  async findMatricula(aluno: Aluno, curso: Curso): Promise<boolean> {
+    console.log('[enis')
+      try {
+        const matriculaExists = await this.repository.findOne({
+          where : {
+            aluno,
+            curso
+          }
+        })
+
+        return !!matriculaExists
+
+      }catch(err) {
+        throw serverError(err as Error)
+      }
   }
 
 }

@@ -2,11 +2,13 @@ import { IMatriculaRepository } from "@modules/gestao/repositories/i-matricula-r
 import { HttpResponse, notFound, serverError } from "@shared/helpers"
 import { inject, injectable } from "tsyringe"
 import AppDataSource from "@shared/infra/database/data-source"
+import { Aluno } from "@modules/pessoas/infra/entities/aluno"
+import { Curso } from "@modules/gestao/infra/entities/curso"
 
 interface IRequest {
   id: string
-  alunoId?: string
-  cursoId?: string
+  alunoId: string
+  cursoId: string
 }
 
 @injectable()
@@ -26,18 +28,26 @@ class UpdateMatriculaUseCase {
     await queryRunner.startTransaction()
 
     try {
-
       const matriculaExists = await this.matriculaRepository.get(id)
-      
       if(matriculaExists.data === null){
-        console.log(matriculaExists)
-        return notFound()
+        return notFound("Matrícula não encontrada.")
       } 
+      
+      const aluno: Aluno | null = await queryRunner.manager.findOne(Aluno, { where: { id: alunoId } })
+      const curso: Curso | null = await queryRunner.manager.findOne(Curso, { where: { id: cursoId } })
+
+      if (!aluno) {
+        return notFound('Aluno não encontrado para realizar matrícula.')
+      }
+
+      if (!curso) {
+        return notFound('Curso não encontrado para vincular com a matrícula.')
+      }
 
       const result = await this.matriculaRepository.update({
         id,
-        alunoId,
-        cursoId,
+        aluno,
+        curso,
       }, queryRunner)
 
       await queryRunner.commitTransaction()
