@@ -5,7 +5,7 @@ import { UpdateAlunoController } from "@modules/pessoas/use-cases/update-aluno/u
 import { Router } from "express"
 import { validateSchema } from "@shared/infra/http/middlewares/validateSchema"
 import { alunoSchema } from "@utils/alunoSchema"
-import { ListAlunoByCursoController } from "@modules/pessoas/use-cases/list-aluno-by-curso/list-aluno-by-curso-controller"
+import { ListAlunosByCursoController } from "@modules/pessoas/use-cases/list-alunos-by-curso/list-alunos-by-curso-controller"
 
 const alunosRoutes = Router()
 
@@ -13,7 +13,7 @@ const createAlunoController = new CreateAlunoController()
 const getAlunoController = new GetAlunoController()
 const updateAlunoController = new UpdateAlunoController()
 const deleteAlunoController = new DeleteAlunoController()
-const listAlunoByCursoController = new ListAlunoByCursoController()
+const listAlunoByCursoController = new ListAlunosByCursoController()
 
 alunosRoutes.post('/', validateSchema(alunoSchema) ,createAlunoController.handle)
 alunosRoutes.get('/:id', getAlunoController.handle)

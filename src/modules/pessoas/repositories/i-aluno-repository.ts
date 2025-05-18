@@ -1,6 +1,7 @@
 import { HttpResponse } from "@shared/helpers"
 import { IAlunoDTO } from "../dto/i-aluno-dto"
 import { QueryRunner } from "typeorm"
+import { Aluno } from "../infra/entities/aluno"
 
 
 interface IAlunoRepository {
@@ -13,6 +14,8 @@ interface IAlunoRepository {
   delete(id: string): Promise<HttpResponse>
 
   listAlunosByCursoId(cursoId: string): Promise<HttpResponse>
+
+  findByEmail(email: string): Promise<Aluno | null>
 
 }
 

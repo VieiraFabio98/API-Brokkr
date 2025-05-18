@@ -52,12 +52,6 @@ class AlunoRepository implements IAlunoRepository {
     email
   }: IAlunoDTO, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
-      const alunoExists = await this.repository.findOne({ where: { id: id } })
-
-      if (!alunoExists) {
-        return notFound()
-      }
-
       const aluno = this.repository.create({
         id,
         nome,
@@ -74,12 +68,6 @@ class AlunoRepository implements IAlunoRepository {
 
   async delete(id: string): Promise<HttpResponse> {
     try {
-      const alunoExists = await this.repository.findOne({ where: { id: id } })
-
-      if (!alunoExists) {
-        return notFound()
-      }
-
       const result = await this.repository.delete(id)
 
       return ok(result)
@@ -103,6 +91,15 @@ class AlunoRepository implements IAlunoRepository {
         .getRawMany()
 
         return ok(alunos)
+      } catch(err) {
+        throw serverError(err as Error)
+      }
+  }
+
+  async findByEmail(email: string): Promise<Aluno | null> {
+      try {
+        const aluno = await this.repository.findOne({ where: { email } })
+        return aluno
       } catch(err) {
         throw serverError(err as Error)
       }

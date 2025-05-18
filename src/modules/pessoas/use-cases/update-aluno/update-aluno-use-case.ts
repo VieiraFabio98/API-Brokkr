@@ -1,12 +1,12 @@
 import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository"
-import { HttpResponse, serverError } from "@shared/helpers"
+import { HttpResponse, notFound, serverError } from "@shared/helpers"
 import { inject, injectable } from "tsyringe"
 import AppDataSource from "@shared/infra/database/data-source"
 
 interface IRequest {
-  id?: string;
-  nome?: string;
-  email?: string;
+  id: string;
+  nome: string;
+  email: string;
 }
 
 @injectable()
@@ -26,6 +26,12 @@ class UpdateAlunoUseCase {
     await queryRunner.connect()
     await queryRunner.startTransaction()
     try {
+
+      const alunoExists = await this.alunoRepository.get(id)
+
+      if(alunoExists.data === null) {
+        return notFound('Aluno não encontrado.')
+      }
 
       const result = await this.alunoRepository.update({
         id,

@@ -1,5 +1,5 @@
 import { IAlunoRepository } from '@modules/pessoas/repositories/i-aluno-repository'
-import { HttpResponse, serverError } from '@shared/helpers'
+import { HttpResponse, notFound, serverError } from '@shared/helpers'
 import { inject, injectable } from 'tsyringe'
 
 
@@ -13,6 +13,10 @@ class GetAlunoUseCase {
   async execute(id: string): Promise<HttpResponse>{
     try {
       const result = await this.alunoRepository.get(id)
+
+      if(result.data === null) {
+        return notFound("Aluno não encontrado.")
+      }
 
       return result
     } catch(err) {

@@ -24,6 +24,7 @@ export class CreateAlunos1747330134754 implements MigrationInterface {
                         name: "email",
                         type: "varchar",
                         isNullable: false,
+                        isUnique: true
                     },
                     {
                         name: "data_nascimento",

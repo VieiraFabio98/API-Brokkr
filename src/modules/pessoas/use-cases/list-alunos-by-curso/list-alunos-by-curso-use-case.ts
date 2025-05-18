@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 
 
 @injectable()
-class ListAlunoByCursoUseCase {
+class ListAlunosByCursoUseCase {
   constructor(
     @inject("AlunoRepository")
     private alunoRepository: IAlunoRepository,
@@ -32,4 +32,4 @@ class ListAlunoByCursoUseCase {
   }
 }
 
-export { ListAlunoByCursoUseCase }
+export { ListAlunosByCursoUseCase }

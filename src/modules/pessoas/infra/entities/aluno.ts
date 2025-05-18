@@ -9,7 +9,7 @@ class Aluno {
   @Column("varchar", { name: "nome", nullable: false })
   nome: string
 
-  @Column("varchar", { name: "email", nullable: false })
+  @Column("varchar", { name: "email", nullable: false, unique: true })
   email: string
 
   @Column("date", { name: "data_nascimento", nullable: false })
