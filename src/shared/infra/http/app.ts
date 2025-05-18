@@ -1,10 +1,12 @@
 import 'reflect-metadata'
 import 'dotenv/config'
 import cors from 'cors'
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import 'express-async-errors'
 import { router } from './routes'
 import '@shared/container'
+import swaggerUi from 'swagger-ui-express'
+import { swaggerDocument } from './swagger'
 
 const app = express()
 
@@ -17,6 +19,8 @@ const options: cors.CorsOptions = {
 }
 
 app.use(cors(options))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use(router)
 
