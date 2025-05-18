@@ -11,7 +11,7 @@ interface IAlunoRepository {
 
   update(data: IAlunoDTO, queryRunner: QueryRunner): Promise<HttpResponse>
 
-  delete(id: string): Promise<HttpResponse>
+  delete(id: string, queryRunner: QueryRunner): Promise<HttpResponse>
 
   listAlunosByCursoId(cursoId: string): Promise<HttpResponse>
 

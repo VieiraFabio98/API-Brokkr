@@ -1,6 +1,6 @@
 import { IAlunoDTO } from "@modules/pessoas/dto/i-aluno-dto"
 import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository"
-import { created, HttpResponse, notFound, ok,  serverError } from "@shared/helpers"
+import { created, HttpResponse, noContent, notFound, ok,  serverError } from "@shared/helpers"
 import { QueryRunner, Repository } from "typeorm"
 import { Aluno } from "../entities/aluno"
 import AppDataSource from "@shared/infra/database/data-source"
@@ -13,7 +13,6 @@ class AlunoRepository implements IAlunoRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(Aluno)
   }
-  
 
   async create({
     nome,
@@ -66,11 +65,15 @@ class AlunoRepository implements IAlunoRepository {
     }
   }
 
-  async delete(id: string): Promise<HttpResponse> {
+  async delete(id: string, queryRunner: QueryRunner): Promise<HttpResponse> {
     try {
-      const result = await this.repository.delete(id)
+      const deleteResult = await queryRunner.manager.delete(Aluno, { id })
 
-      return ok(result)
+      if (!deleteResult.affected || deleteResult.affected === 0) {
+        return notFound("Aluno não encontrado.")
+      }
+  
+      return noContent()
 
     } catch(err) {
       throw serverError(err as Error)

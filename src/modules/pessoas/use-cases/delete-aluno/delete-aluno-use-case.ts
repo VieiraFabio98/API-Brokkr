@@ -1,7 +1,7 @@
-import { AlunoRepository } from '@modules/pessoas/infra/repositories/aluno-repository';
-import { IAlunoRepository } from '@modules/pessoas/repositories/i-aluno-repository';
-import { HttpResponse, notFound, serverError } from '@shared/helpers';
-import { inject, injectable } from "tsyringe";
+import { IAlunoRepository } from '@modules/pessoas/repositories/i-aluno-repository'
+import { HttpResponse, notFound, serverError } from '@shared/helpers'
+import { inject, injectable } from "tsyringe"
+import AppDataSource from "@shared/infra/database/data-source"
 
 
 @injectable()
@@ -12,20 +12,22 @@ class DeleteAlunoUseCase {
   ){}
 
   async execute(id: string): Promise<HttpResponse> {
+    const queryRunner = AppDataSource.createQueryRunner()
+    await queryRunner.connect()
+    await queryRunner.startTransaction()
     try {
 
-      const alunoExists = await this.alunoRepository.get(id)
+      const result = await this.alunoRepository.delete(id, queryRunner)
 
-      if(alunoExists.data === null) {
-        return notFound("Aluno não encontrado.")
-      }
-
-      const result = await this.alunoRepository.delete(id)
-
+      await queryRunner.commitTransaction()
       return result
 
     } catch(err) {
+      console.log('Delete Aluno - rollback: \n', err)
+      queryRunner.rollbackTransaction()
       throw serverError(err as Error)
+    } finally {
+      queryRunner.release()
     }
   }
 
