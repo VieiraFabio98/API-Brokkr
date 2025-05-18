@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { UpdateCursoUseCase } from "./update-curso-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { UpdateCursoUseCase } from "./update-curso-use-case"
 
 
 class UpdateCursoController {

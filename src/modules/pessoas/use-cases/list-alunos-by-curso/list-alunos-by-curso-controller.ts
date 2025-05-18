@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { ListAlunosByCursoUseCase } from "./list-alunos-by-curso-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { ListAlunosByCursoUseCase } from "./list-alunos-by-curso-use-case"
 
 
 class ListAlunosByCursoController {

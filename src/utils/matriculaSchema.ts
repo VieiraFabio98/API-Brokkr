@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi from "joi"
 
 const matriculaSchema = Joi.object({
   alunoId: Joi.string()
@@ -21,4 +21,4 @@ const matriculaSchema = Joi.object({
     }),
 })
 
-export { matriculaSchema };
+export { matriculaSchema }

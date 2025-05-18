@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateAlunoUseCase } from "./create-aluno-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { CreateAlunoUseCase } from "./create-aluno-use-case"
 
 
 class CreateAlunoController {

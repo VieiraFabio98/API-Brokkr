@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { GetMatriculaUseCase } from "./get-matricula-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { GetMatriculaUseCase } from "./get-matricula-use-case"
 
 
 class GetMatriculaController {

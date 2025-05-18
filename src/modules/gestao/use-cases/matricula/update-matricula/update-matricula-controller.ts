@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { UpdateMatriculaUseCase } from "./update-matricula-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { UpdateMatriculaUseCase } from "./update-matricula-use-case"
 
 
 class UpdateMatriculaController {

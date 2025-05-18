@@ -12,10 +12,6 @@ export const getConfig = () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     migrations: ["src/shared/infra/database/migrations/**/*.ts"],
-    // entities: [
-    //   './src/modules/*/infra/typeorm/entities/.ts',
-    //   './dist/modules/*/infra/typeorm/entities/.js'
-    // ]
     entities: ["src/modules/**/infra/entities/*.ts"],
     
   } as DataSourceOptions

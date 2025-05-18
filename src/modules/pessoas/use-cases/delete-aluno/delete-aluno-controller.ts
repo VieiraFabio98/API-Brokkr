@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { DeleteAlunoUseCase } from "./delete-aluno-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { DeleteAlunoUseCase } from "./delete-aluno-use-case"
 
 
 class DeleteAlunoController {

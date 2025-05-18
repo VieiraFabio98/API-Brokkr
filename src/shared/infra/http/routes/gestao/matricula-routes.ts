@@ -1,10 +1,10 @@
-import { CreateMatriculaController } from "@modules/gestao/use-cases/matricula/create-matricula/create-matricula-controller";
-import { Router } from "express";
-import { validateSchema } from "../../middlewares/validateSchema";
-import { matriculaSchema } from "@utils/matriculaSchema";
-import { UpdateMatriculaController } from "@modules/gestao/use-cases/matricula/update-matricula/update-matricula-controller";
-import { GetMatriculaController } from "@modules/gestao/use-cases/matricula/get-matricula/get-matricula-controller";
-import { DeleteMatriculaController } from "@modules/gestao/use-cases/matricula/delete-matricula/delete-matricula-controller";
+import { CreateMatriculaController } from "@modules/gestao/use-cases/matricula/create-matricula/create-matricula-controller"
+import { Router } from "express"
+import { validateSchema } from "../../middlewares/validateSchema"
+import { matriculaSchema } from "@utils/matriculaSchema"
+import { UpdateMatriculaController } from "@modules/gestao/use-cases/matricula/update-matricula/update-matricula-controller"
+import { GetMatriculaController } from "@modules/gestao/use-cases/matricula/get-matricula/get-matricula-controller"
+import { DeleteMatriculaController } from "@modules/gestao/use-cases/matricula/delete-matricula/delete-matricula-controller"
 
 
 const matriculaRoutes = Router()

@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { UpdateAlunoUseCase } from "./update-aluno-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { UpdateAlunoUseCase } from "./update-aluno-use-case"
 
 
 class UpdateAlunoController {

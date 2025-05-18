@@ -1,7 +1,7 @@
-import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository";
-import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository";
-import { HttpResponse, notFound, ok } from "@shared/helpers";
-import { inject, injectable } from "tsyringe";
+import { ICursoRepository } from "@modules/gestao/repositories/i-curso-repository"
+import { IAlunoRepository } from "@modules/pessoas/repositories/i-aluno-repository"
+import { HttpResponse, notFound, ok } from "@shared/helpers"
+import { inject, injectable } from "tsyringe"
 
 
 @injectable()

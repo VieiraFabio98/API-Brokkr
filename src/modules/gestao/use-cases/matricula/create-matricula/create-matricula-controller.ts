@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateMatriculaUseCase } from "./create-matricula-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { CreateMatriculaUseCase } from "./create-matricula-use-case"
 
 
 class CreateMatriculaController {

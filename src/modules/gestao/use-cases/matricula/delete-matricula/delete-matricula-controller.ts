@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { DeleteMatriculaUseCase } from "./delete-matricula-use-case";
+import { Request, Response } from "express"
+import { container } from "tsyringe"
+import { DeleteMatriculaUseCase } from "./delete-matricula-use-case"
 
 
 class DeleteMatriculaController {

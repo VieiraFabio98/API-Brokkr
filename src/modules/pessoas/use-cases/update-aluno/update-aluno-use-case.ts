@@ -4,9 +4,9 @@ import { inject, injectable } from "tsyringe"
 import AppDataSource from "@shared/infra/database/data-source"
 
 interface IRequest {
-  id: string;
-  nome: string;
-  email: string;
+  id: string
+  nome: string
+  email: string
 }
 
 @injectable()

@@ -1,8 +1,8 @@
 
 
-import { Aluno } from "@modules/pessoas/infra/entities/aluno";
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Curso } from "./curso";
+import { Aluno } from "@modules/pessoas/infra/entities/aluno"
+import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Curso } from "./curso"
 
 
 @Entity('matriculas')
