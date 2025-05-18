@@ -23,6 +23,17 @@ class ListAlunosByCursoUseCase {
 
     const result = await this.alunoRepository.listAlunosByCursoId(id)
 
+    const { cursoNome, descricao } = result.data[0]
+    const alunos = result.data.map(({ id, nome, email, dataMatricula }: any) => ({ id, nome, email, dataMatricula }))
+      
+      result.data = {
+        Curso: {
+          nome: cursoNome,
+          descricao: descricao
+        },
+        alunos
+      }
+
     if(result.data.length === 0) {
       return ok({message: "Nenhum aluno matriculado nesse curso."})
     }

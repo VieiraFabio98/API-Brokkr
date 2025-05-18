@@ -87,10 +87,15 @@ class AlunoRepository implements IAlunoRepository {
           "alu.id as id",
           "alu.nome as nome",
           "alu.email as email",
-          "mat.data_matricula as datamatricula",
+          "mat.data_matricula as dataMatricula",
+          "cur.id as cursoId",
+          "cur.nome as cursoNome",
+          "cur.descricao as descricao"
         ])
         .leftJoin('matriculas', 'mat', 'alu.id = mat.aluno_id')
-        .where('mat.curso_id = :cursoId', { cursoId })
+        .leftJoin('cursos', 'cur', 'cur.id = :cursoId', { cursoId })
+        .where('mat.curso_id = :cursoId', { cursoId }) 
+        .orderBy('alu.nome', 'ASC')
         .getRawMany()
 
         return ok(alunos)
