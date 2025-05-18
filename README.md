@@ -40,6 +40,11 @@ Siga os passos abaixo, na ordem indicada:
    yarn dev
    ```
 
+5. Caso necessário derrumar o docker
+   ```bash
+   docker compose down --volumes
+   ```
+
 ---
 
 Após esses passos, a API estará disponível em `http://localhost:3333`.
