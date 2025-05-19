@@ -47,3 +47,4 @@ Siga os passos abaixo, na ordem indicada:
 ---
 
 Após esses passos, a API estará disponível em `http://localhost:3333`.
+Documentação das rotas pode ser encontrada em `http://localhost:3333/api-docs/#/` 
